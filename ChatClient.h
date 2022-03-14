@@ -34,6 +34,8 @@ public:
 
     void loop();
 
+    void stop();
+
     ChatClient(std::string address, uint16_t port);
 
     void sendMessage(std::string message);

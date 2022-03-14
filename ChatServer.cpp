@@ -48,6 +48,7 @@ void ChatServer::setOnMessage(std::function<void(std::string)> onMessageHandler)
 }
 
 void ChatServer::loop() {
+    isWorking = true;
     while (isWorking) {
 
         // Maybe 900 ms
@@ -88,4 +89,8 @@ void ChatServer::loop() {
             lastUpdate = std::chrono::steady_clock::now();
         }
     }
+}
+
+void ChatServer::stop() {
+    isWorking = false;
 }

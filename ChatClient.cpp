@@ -85,3 +85,7 @@ void ChatClient::loop() {
     }
 
 }
+
+void ChatClient::stop() {
+    isWorking = false;
+}
