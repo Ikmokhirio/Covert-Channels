@@ -11,6 +11,7 @@
 #include <vector>
 #include <iostream>
 #include <thread>
+#include <atomic>
 #include <mutex>
 
 class ChatServer {
@@ -32,7 +33,7 @@ private:
 
     std::mutex bufferLock;
 
-    bool isWorking;
+    std::atomic<bool> isWorking;
 
     int currentBit;
 

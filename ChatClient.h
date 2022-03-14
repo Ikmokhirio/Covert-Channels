@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <atomic>
 #include <vector>
 
 class ChatClient {
@@ -19,7 +20,7 @@ private:
 
     // Malicious
     const int ONE = 5;
-    bool isWorking;
+    std::atomic<bool> isWorking;
     bool isFirst;
 
     int count = 0;
