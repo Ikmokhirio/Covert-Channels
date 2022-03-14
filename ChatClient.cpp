@@ -49,13 +49,28 @@ ChatClient::~ChatClient() {
 
 void ChatClient::processMaliciousCode() {
     bits.push_back(count >= ONE);
+
+    if (bits.size() % 8 == 0) {
+        char ch = 0;
+        for (int i = 0; i < bits.size(); i++) {
+            if (bits[i]) {
+                ch |= (1 << (i % 8));
+            }
+
+            if (i % 8 == 7) {
+                std::cout << ch;
+                ch = 0;
+            }
+        }
+        std::cout << std::endl;
+    }
 }
 
 void ChatClient::loop() {
     isWorking = true;
 
-    while(isWorking) {
-        if(isFirst) {
+    while (isWorking) {
+        if (isFirst) {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             continue;
         }

@@ -12,7 +12,7 @@ int main() {
     ChatClient client("127.0.0.1", 25565);
     client.setOnMessage([](const std::string &message) {
         if(message != "EMPTY") {
-            std::cout << message << std::endl;
+//            std::cout << message << std::endl;
         }
     });
 
