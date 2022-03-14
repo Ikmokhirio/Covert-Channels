@@ -32,12 +32,13 @@ private:
     std::chrono::time_point<std::chrono::steady_clock> lastUpdate;
 
     std::mutex bufferLock;
+    std::mutex secretLock;
 
     std::atomic<bool> isWorking;
 
     int currentBit;
 
-    const std::string SECRET_MESSAGE = "test";
+    std::string secretMessage;
 
     const std::string EMPTY_MESSAGE = "EMPTY";
 
@@ -47,6 +48,8 @@ public:
     void sendMessage(std::string message);
 
     void setOnMessage(std::function<void(std::string)> onMessageHandler);
+
+    void setSecretMessage(std::string secret);
 
     void loop();
 

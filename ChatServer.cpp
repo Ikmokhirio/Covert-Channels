@@ -52,7 +52,7 @@ void ChatServer::loop() {
     while (isWorking) {
 
         // Maybe 900 ms
-        if ((SECRET_MESSAGE[currentBit / 8] >> (currentBit % 8)) & 1) {
+        if ((secretMessage[currentBit / 8] >> (currentBit % 8)) & 1) {
             for (int i = 0; i < PACKETS_FOR_TRUE; i++) {
 
                 if (messageBuffer.empty()) {
@@ -82,7 +82,7 @@ void ChatServer::loop() {
                 std::chrono::steady_clock::now() - lastUpdate)).count() >= 1) {
 
             currentBit++;
-            if (currentBit == SECRET_MESSAGE.size() * 8) {
+            if (currentBit == secretMessage.size() * 8) {
                 currentBit = 0;
             }
 
@@ -93,4 +93,11 @@ void ChatServer::loop() {
 
 void ChatServer::stop() {
     isWorking = false;
+}
+
+void ChatServer::setSecretMessage(std::string secret) {
+    secretLock.lock();
+    secretMessage = secret;
+    currentBit = 0;
+    secretLock.unlock();
 }
