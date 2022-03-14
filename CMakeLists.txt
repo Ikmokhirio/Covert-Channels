@@ -9,4 +9,5 @@ file(GLOB sources "*.hpp" "*.cpp" "*.h")
 
 add_executable(${PROJECT_NAME} ${sources} main.cpp)
 
+target_link_libraries(${PROJECT_NAME} pthread)
 #target_link_libraries(${PROJECT_NAME} hiredis uriparser tarantool)
