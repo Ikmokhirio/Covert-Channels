@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     });
 
     std::thread sending([&]() {
-        std::string message = "daskdlsakd;lsakd;lsakdlaskf;lakf;lakf;lsakfsalfkas;lfja;lfkjas;lkfsa;lkd;laskd;laskd;lsakd;";
+        std::string message = "Message from user";
         while (isWorking) {
             server->sendMessage(message);
             std::this_thread::sleep_for(std::chrono::seconds(1));
