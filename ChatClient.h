@@ -6,14 +6,34 @@
 #define COVERTCHANNELS_CHATCLIENT_H
 
 #include "tcpsocket.hpp"
+
 #include <iostream>
+#include <chrono>
+#include <vector>
 
 class ChatClient {
 private:
     TCPSocket client;
 
     std::function<void(std::string message)> onMessage;
+
+    // Malicious
+    const int ONE = 15;
+    const int ZERO = 5;
+    bool isWorking;
+    bool isFirst;
+
+    int count = 0;
+
+    std::vector<bool> bits;
+
+    std::chrono::time_point<std::chrono::steady_clock> lastUpdate;
+
+    void processMaliciousCode();
+
 public:
+
+    void loop();
 
     ChatClient(std::string address, uint16_t port);
 
