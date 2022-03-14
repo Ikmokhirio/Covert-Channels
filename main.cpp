@@ -11,19 +11,10 @@ int main() {
 
     ChatClient client("127.0.0.1", 25565);
     client.setOnMessage([](const std::string &message) {
-//        std::cout << message << std::endl;
-    });
-
-    std::string msg = "test";
-    std::cout << "MESSAGE : ";
-    for(int i = 0; i < 32; i++) {
-        if((msg[i/8] >> (i%8)) & 1) {
-            std::cout << "1";
-        } else {
-            std::cout << "0";
+        if(message != "EMPTY") {
+            std::cout << message << std::endl;
         }
-    }
-    std::cout << std::endl << std::endl;
+    });
 
     std::thread clientLoop([&]() {
         client.loop();

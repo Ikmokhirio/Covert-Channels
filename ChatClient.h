@@ -18,8 +18,7 @@ private:
     std::function<void(std::string message)> onMessage;
 
     // Malicious
-    const int ONE = 15;
-    const int ZERO = 5;
+    const int ONE = 5;
     bool isWorking;
     bool isFirst;
 

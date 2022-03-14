@@ -19,9 +19,14 @@ private:
 
     TCPSocket *client;
 
-    std::vector<std::string> messageBuffer;
-
     std::function<void(std::string message)> onMessage;
+
+    // Malicious part
+
+    const int PACKETS_FOR_TRUE = 10;
+    const int TIME_INTERVAL_IN_MS = 1000;
+
+    std::vector<std::string> messageBuffer;
 
     std::chrono::time_point<std::chrono::steady_clock> lastUpdate;
 
