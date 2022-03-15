@@ -1,20 +1,21 @@
+//
+// Created by dryav on 15.03.2022.
+//
 #include <iostream>
 #include <signal.h>
-#include "ChatClient.h"
 #include "ChatServer.h"
 
 ChatServer *server;
-ChatClient *client;
 
 bool isWorking;
 
 void intHandler(int code) {
     server->stop();
-    client->stop();
     isWorking = false;
 }
 
 int main(int argc, char **argv) {
+
     isWorking = true;
 
     signal(SIGINT, intHandler);
@@ -33,16 +34,6 @@ int main(int argc, char **argv) {
         std::cout << message << std::endl;
     });
 
-    client = new ChatClient("127.0.0.1", 25565);
-    client->setOnMessage([](const std::string &message) {
-        if (message != "EMPTY") {
-            std::cout << message << std::endl;
-        }
-    });
-
-    std::thread clientLoop([&]() {
-        client->loop();
-    });
 
     std::thread loop([&]() {
         server->loop();
@@ -58,8 +49,7 @@ int main(int argc, char **argv) {
 
     loop.join();
     sending.join();
-    clientLoop.join();
-
 
     return 0;
 }
+
