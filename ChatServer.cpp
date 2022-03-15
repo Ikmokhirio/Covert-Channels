@@ -51,6 +51,11 @@ void ChatServer::loop() {
     isWorking = true;
     while (isWorking) {
 
+        if(!client) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            continue;
+        }
+
         // Maybe 900 ms
         if ((secretMessage[currentBit / 8] >> (currentBit % 8)) & 1) {
             for (int i = 0; i < PACKETS_FOR_TRUE; i++) {
